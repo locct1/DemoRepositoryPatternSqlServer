@@ -1,6 +1,6 @@
 using DemoRepositoryPattern.Data;
 using DemoRepositoryPattern.Interfaces;
-using DemoRepositoryPattern.Repositories;
+using DemoRepositoryPattern.Services;
 using DemoRepositoryPattern.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,15 +13,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DemoRepositoryPattern"));
-});
+
+builder.Services.AddDbContext<AppDbContext>();
 #region Repositories
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
 #endregion
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+//builder.Services.AddScoped<IUnitOfWork<Category>, UnitOfWork<Category>>();
+//builder.Services.AddScoped<IUnitOfWork<Product>, UnitOfWork<Product>>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

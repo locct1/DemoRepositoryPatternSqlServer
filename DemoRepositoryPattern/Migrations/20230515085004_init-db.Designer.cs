@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoRepositoryPattern.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230510013558_create-category")]
-    partial class createcategory
+    [Migration("20230515085004_init-db")]
+    partial class initdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,15 +76,10 @@ namespace DemoRepositoryPattern.Migrations
             modelBuilder.Entity("DemoRepositoryPattern.Data.Product", b =>
                 {
                     b.HasOne("DemoRepositoryPattern.Data.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("DemoRepositoryPattern.Data.Category", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
