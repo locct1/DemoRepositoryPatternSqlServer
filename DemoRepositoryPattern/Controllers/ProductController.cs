@@ -32,7 +32,7 @@ namespace DemoRepositoryPattern.Controllers
             Product findProduct = await _productService.GetProductById(id);
             if (findProduct is null)
             {
-                ModelState.AddModelError("Error", "Category not found");
+                ModelState.AddModelError("Error", "Product not found");
                 return BadRequest(ModelState);
             }
             return Ok(findProduct);
@@ -62,7 +62,7 @@ namespace DemoRepositoryPattern.Controllers
             Product findProduct = await _productService.GetProductById(id);
             if (findProduct is null)
             {
-                ModelState.AddModelError("Error", "Category not found");
+                ModelState.AddModelError("Error", "Product not found");
                 return BadRequest(ModelState);
             }
 
