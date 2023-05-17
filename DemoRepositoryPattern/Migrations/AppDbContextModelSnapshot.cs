@@ -74,15 +74,10 @@ namespace DemoRepositoryPattern.Migrations
             modelBuilder.Entity("DemoRepositoryPattern.Data.Product", b =>
                 {
                     b.HasOne("DemoRepositoryPattern.Data.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("DemoRepositoryPattern.Data.Category", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
